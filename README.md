@@ -1,5 +1,5 @@
-# Kaskus Mobile Quick Reply
-Kaskus Mobile Quick Reply is a userscript for mobile mode of Kaskus forum (m.kaskus.co.id). It includes several BBcode features adapting from [Kaskus Quick Reply](https://github.com/idoenk/kaskus-quick-reply) script.
+# Mobile Kaskus Quick Reply
+Mobile Kaskus Quick Reply is a userscript for mobile mode of Kaskus forum (m.kaskus.co.id). It includes several BBcode features adapting from [Kaskus Quick Reply](https://github.com/idoenk/kaskus-quick-reply) script.
 
 
 # Not Gonna Happen

@@ -1,9 +1,9 @@
 # Kaskus Mobile Quick Reply
-Kaskus Mobile Quick Reply is a userscript for mobile mode of Kaskus forum (m.kaskus.co.id). It includes several BBcode adapting from Kaskus Mobile Quick Reply.
+Kaskus Mobile Quick Reply is a userscript for mobile mode of Kaskus forum (m.kaskus.co.id). It includes several BBcode features adapting from [Kaskus Quick Reply](https://github.com/idoenk/kaskus-quick-reply) script.
 
 
 # Not Gonna Happen
-This Kaskus Mobile Quick Reply script **WILL NOT** bypass recaptcha-step (as long as it required) for regular user.
+This Mobile Kaskus Quick Reply script **WILL NOT** bypass recaptcha-step (as long as it required) for regular user.
 
 
 

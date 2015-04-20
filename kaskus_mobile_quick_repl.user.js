@@ -3,15 +3,23 @@
 // @namespace      http://userscripts.org/scripts/show/91051
 // @description    Provide Quick Reply on Kaskus Mobile
 // @author         idx (http://userscripts.org/users/idx)
-// @version        2.3
-// @dtversion      150301230
-// @timestamp      1425165905164
+// @version        2.4
+// @dtversion      150421240
+// @timestamp      1429562960309
 // @include        http://m.kaskus.co.id/post/*
 // @include        http://m.kaskus.co.id/thread/*
 // @include        http://m.kaskus.co.id/lastpost/*
+// @include        /^https?://fjb.m.kaskus.co.id/(lastpost|thread|post|product)/*/
 // @license        (CC) by-nc-sa 3.0
 //
 // -!--latestupdate
+//
+// v2.4 - 2015-04-21 . 1429562960309
+//  add include fjb mobile
+//  
+// -/!latestupdate---
+// ==/UserScript==
+/*
 //
 // v2.3 - 2015-03-01 . 1425165905164
 //  fix styles bbcode buttons;
@@ -19,10 +27,6 @@
 //  Fix header styles;
 //  Patch invalid security token, changed attribute:name
 //  
-// -/!latestupdate---
-// ==/UserScript==
-/*
-//
 // v2.2 - 2014-07-04 . 1404492166878
 //  fix changed dom (avatar-wraper)
 //  handle defect-hash callback after posting
@@ -53,9 +57,9 @@
 (function(){
 
   var gvar = function(){};
-  gvar.sversion = 'v' + '2.3';
+  gvar.sversion = 'v' + '2.4';
   gvar.scriptMeta = {
-    timestamp: 1425165905164 // version.timestamp
+    timestamp: 1429562960309 // version.timestamp
 
    ,scriptID: 91051 // script-Id
   };
@@ -1186,7 +1190,7 @@
       +'#wrapper.fx .main-h{width:620px;position:fixed;top:0;z-index:99999;}'
       +'#wrapper.fx #main{margin-top:30px}'
 
-      +'#wrapper.fx #site-header .main-h {height:22px; box-shadow: 0 0 7px #aaa;opacity: .9;}'
+      +'#wrapper.fx #site-header .main-h {height:22px; box-shadow: 0 0 7px #aaa;opacity:.9;background: #ebebeb;}'
       +'#wrapper.fx #site-header .main-h:hover {opacity: 1;}'
       +'#wrapper.fx #site-header .main-h a{line-height:22px; height:22px;}'
       +'#wrapper.fx #site-header .main-h a img{margin: 2px 0 2px 4px;height: 18px!important;width: 18px!important;}'

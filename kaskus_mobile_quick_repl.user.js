@@ -3,24 +3,29 @@
 // @namespace      http://userscripts.org/scripts/show/91051
 // @description    Provide Quick Reply on Kaskus Mobile
 // @author         idx (http://userscripts.org/users/idx)
-// @version        2.4
-// @dtversion      150421240
-// @timestamp      1429562960309
-// @include        http://m.kaskus.co.id/post/*
-// @include        http://m.kaskus.co.id/thread/*
-// @include        http://m.kaskus.co.id/lastpost/*
+// @version        2.5
+// @dtversion      150513250
+// @timestamp      1431550952997
+// @include        /^https?://m.kaskus.co.id/(post|thread|lastpost)/*/
 // @include        /^https?://fjb.m.kaskus.co.id/(lastpost|thread|post|product)/*/
 // @license        (CC) by-nc-sa 3.0
+// @run-at         document-end
 //
 // -!--latestupdate
 //
-// v2.4 - 2015-04-21 . 1429562960309
-//  add include fjb mobile
+// v2.5 - 2015-05-13 . 1431550952997
+//  patch css blue button; 
+//  remove origin qr-form; 
+//  change link to mobile-qr(GF);
+//  simplify include with regex;
 //  
 // -/!latestupdate---
 // ==/UserScript==
 /*
 //
+// v2.4 - 2015-04-21 . 1429562960309
+//  add include fjb mobile
+//  
 // v2.3 - 2015-03-01 . 1425165905164
 //  fix styles bbcode buttons;
 //  scrolltop on header-click;
@@ -57,11 +62,13 @@
 (function(){
 
   var gvar = function(){};
-  gvar.sversion = 'v' + '2.4';
+  gvar.sversion = 'v' + '2.5';
   gvar.scriptMeta = {
-    timestamp: 1429562960309 // version.timestamp
+    timestamp: 1431550952997 // version.timestamp
 
    ,scriptID: 91051 // script-Id
+   ,scriptID_GF: 95 // script-Id @Greasyfork
+   ,slug_GF: 'kaskus-mobile-quick-reply'
   };
   /*
   window.alert(new Date().getTime());
@@ -949,7 +956,7 @@
       return ''
       +'<div class="form-input reply-input">'
       +'<div class="legend qrtitle">'
-      + '<span>mQuick <em id="qrtitle_mode">Reply</em> <a target="_blank" href="http://userscripts.org/scripts/show/'+gvar.scriptMeta.scriptID.toString()+'" class="mqrlink">'+gvar.sversion+'</a></span>'
+      + '<span>mQuick <em id="qrtitle_mode">Reply</em> <a target="_blank" href="https://greasyfork.org/scripts/'+gvar.scriptMeta.scriptID_GF.toString()+(gvar.scriptMeta.slug_GF ? '-'+gvar.scriptMeta.slug_GF:'')+'?ref=m-kaskus" class="mqrlink">'+gvar.sversion+'</a></span>'
       +'</div>'
       +'<form action="" name="postreply" id="mqrform" method="post">'
       +'<fieldset>'
@@ -1565,16 +1572,29 @@
           pid = cucok[1];
 
         if(par = node.parentNode){
+          addClass('btn blue', node);
+
           el = createEl('a', {'href':'javascript:;', 'class':'qq btn blue'}, 'Quick Reply');
           append(par, el);
+
           el = createEl('a', {'href':'javascript:;', 'class':'qf btn blue'}, '<i class="throb"></i>Fetch');
           prepend(par, el, node);
-          el = $D('.//a[contains(@href,"edit_post/")]', par, 1);
-          el && (el.innerHTML = '<i class="throb"></i>Edit');
+
+          // edit button?
+          if( el = $D('.//a[contains(@href,"edit_post/")]', par, 1) ){
+            addClass('btn blue', el);
+            el.innerHTML = '<i class="throb"></i>Edit';
+          }
 
           setAttr('data-pid', '_'+pid, par);
+
+          // remove button Reply
+          Dom.remove($$('[href="#reply_form"]', par));
         }
       }
+
+      // remove form-reply
+      Dom.remove($$('.form-input'));
     }
 
     // templating :: find entry:last

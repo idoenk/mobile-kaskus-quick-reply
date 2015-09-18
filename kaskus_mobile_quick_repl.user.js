@@ -3,9 +3,9 @@
 // @namespace      http://userscripts.org/scripts/show/91051
 // @description    Provide Quick Reply on Kaskus Mobile
 // @author         idx (http://userscripts.org/users/idx)
-// @version        2.6
-// @dtversion      150724260
-// @timestamp      1437683007275
+// @version        2.7
+// @dtversion      150918270
+// @timestamp      1442572891205
 // @include        /^https?://m.kaskus.co.id/(post|thread|lastpost)/*/
 // @include        /^https?://fjb.m.kaskus.co.id/(lastpost|thread|post|product)/*/
 // @license        (CC) by-nc-sa 3.0
@@ -13,15 +13,18 @@
 //
 // -!--latestupdate
 //
-// v2.6 - 2015-07-24 . 1437683007275
+// v2.7 - 2015-09-18 . 1442572891205
 //  update kaskus recaptcha Site key;
-//  detect current user.Donatur;
-//  css in_baloon;
 //  
 // -/!latestupdate---
 // ==/UserScript==
 /*
 //
+// v2.6 - 2015-07-24 . 1437683007275
+//  update kaskus recaptcha Site key;
+//  detect current user.Donatur;
+//  css in_baloon;
+//  
 // v2.5 - 2015-05-13 . 1431550952997
 //  patch css blue button; 
 //  remove origin qr-form; 
@@ -67,9 +70,9 @@
 (function(){
 
   var gvar = function(){};
-  gvar.sversion = 'v' + '2.6';
+  gvar.sversion = 'v' + '2.7';
   gvar.scriptMeta = {
-    timestamp: 1437683007275 // version.timestamp
+    timestamp: 1442572891205 // version.timestamp
 
    ,scriptID: 91051 // script-Id
    ,scriptID_GF: 95 // script-Id @Greasyfork
@@ -1358,7 +1361,7 @@
       +   'window.setTimeout(function () { showRecaptcha() }, 200);'
       +   'return;'
       + '}else{'
-      +   'try{ Recaptcha.create("6LdPZPoSAAAAANzOixEawpyggAQ6qtzIUNRTxJXZ", '
+      +   'try{ Recaptcha.create("'+(gvar.isFJB ? '6Lc7C9gSAAAAAMAoh4_tF_uGHXnvyNJ6tf9j9ndI':'6LdPZPoSAAAAANzOixEawpyggAQ6qtzIUNRTxJXZ')+'", '
       +   'element, {theme:"custom", lang:"en", custom_theme_widget:"mqr-cpcy"}); }catch(e){};'
       + '}'
       +'}'
@@ -1449,6 +1452,7 @@
     ApiBrowserCheck();
 
     gvar.user = currentUser();
+    gvar.isFJB = /^fjb\.m\.kaskus/.test(kdomain.host);
 
     getSettings();
 

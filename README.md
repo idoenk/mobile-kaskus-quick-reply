@@ -9,3 +9,4 @@ This Mobile Kaskus Quick Reply script **WILL NOT** bypass recaptcha-step (as lon
 
 # License
 Licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 3.0 License](http://creativecommons.org/licenses/by-nc-sa/3.0)
+.
